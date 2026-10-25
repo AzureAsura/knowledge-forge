@@ -1,0 +1,11 @@
+# Local docs and notes (contain internal notes and credentials)
+/docs/
+
+# Local-only notes
+**/note.md
+
+# Editor / OS
+.DS_Store
+.vscode/*
+!.vscode/extensions.json
+.idea

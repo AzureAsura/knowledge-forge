@@ -1,0 +1,368 @@
+@import "tailwindcss";
+
+/* Tailwind v4 resets buttons to the default arrow; every clickable control should show the hand. */
+@layer base {
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  [role="tab"],
+  [role="menuitem"],
+  summary,
+  select:not(:disabled),
+  label[for],
+  label:has(> input[type="file"]),
+  label:has(> input[type="checkbox"]),
+  label:has(> input[type="radio"]),
+  input[type="checkbox"]:not(:disabled),
+  input[type="radio"]:not(:disabled),
+  input[type="file"]:not(:disabled),
+  input[type="range"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  button:disabled,
+  select:disabled,
+  input:disabled {
+    cursor: not-allowed;
+  }
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background: #f0f2f5;
+}
+
+.bg-base {
+  background-color: #f0f2f5;
+}
+
+.neu-raised {
+  box-shadow: -3px -3px 8px #ffffff, 3px 3px 8px #d1d5db;
+}
+.neu-raised-sm {
+  box-shadow: -2px -2px 5px #ffffff, 2px 2px 5px #d1d5db;
+}
+.neu-pressed {
+  box-shadow: inset -2px -2px 4px #ffffff, inset 2px 2px 4px #d1d5db;
+}
+.neu-hover:hover {
+  box-shadow: -3px -3px 7px #ffffff, 3px 3px 7px #c8ccd0;
+}
+.neu-hover:active {
+  box-shadow: inset -2px -2px 4px #ffffff, inset 2px 2px 4px #c8ccd0;
+}
+.neu-raised,
+.neu-raised-sm,
+.neu-pressed {
+  transition:
+    box-shadow 150ms ease-out,
+    transform 150ms ease-out;
+}
+
+/* Syntax highlighting for rendered scrolls (highlight.js classes), same palette as the mockup code window. */
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-literal,
+.hljs-doctag {
+  color: #8b5cf6;
+  font-weight: 700;
+}
+.hljs-type,
+.hljs-built_in,
+.hljs-number,
+.hljs-title.class_ {
+  color: #f59e0b;
+}
+.hljs-title,
+.hljs-title.function_,
+.hljs-attr,
+.hljs-attribute,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-meta {
+  color: #3b82f6;
+}
+.hljs-string,
+.hljs-regexp,
+.hljs-symbol,
+.hljs-addition {
+  color: #10b981;
+}
+.hljs-comment,
+.hljs-quote {
+  color: #9ca3af;
+  font-style: italic;
+}
+.hljs-deletion {
+  color: #ef4444;
+}
+
+/* Editable scroll body (TipTap): same look as MarkdownContent. */
+.scroll-editor .ProseMirror {
+  outline: none;
+  min-height: 320px;
+  color: #4b5563;
+  font-size: 15px;
+  line-height: 1.7;
+}
+.scroll-editor .ProseMirror > * + * {
+  margin-top: 1rem;
+}
+.scroll-editor .ProseMirror h1,
+.scroll-editor .ProseMirror h2 {
+  font-size: 22px;
+  font-weight: 800;
+  color: #1f2937;
+  line-height: 1.25;
+}
+.scroll-editor .ProseMirror h3 {
+  font-size: 18px;
+  font-weight: 800;
+  color: #1f2937;
+}
+.scroll-editor .ProseMirror a {
+  color: #3b82f6;
+  font-weight: 600;
+}
+.scroll-editor .ProseMirror code {
+  padding: 0.1rem 0.5rem;
+  border-radius: 8px;
+  font-family: ui-monospace, monospace;
+  font-size: 12px;
+  color: #3b82f6;
+  box-shadow: inset -2px -2px 4px #ffffff, inset 2px 2px 4px #d1d5db;
+}
+.scroll-editor .ProseMirror pre {
+  padding: 1rem;
+  border-radius: 18px;
+  overflow-x: auto;
+  color: #1f2937;
+  box-shadow: inset -2px -2px 4px #ffffff, inset 2px 2px 4px #d1d5db;
+}
+.scroll-editor .ProseMirror pre code {
+  padding: 0;
+  box-shadow: none;
+  color: inherit;
+}
+.scroll-editor .ProseMirror blockquote {
+  padding: 1rem 1.25rem;
+  border-left: 4px solid #3b82f6;
+  border-radius: 18px;
+  font-style: italic;
+  color: #1f2937;
+  box-shadow: inset -2px -2px 4px #ffffff, inset 2px 2px 4px #d1d5db;
+}
+.scroll-editor .ProseMirror ul {
+  list-style: disc;
+  padding-left: 1.5rem;
+}
+.scroll-editor .ProseMirror ol {
+  list-style: decimal;
+  padding-left: 1.5rem;
+}
+.scroll-editor .ProseMirror table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.scroll-editor .ProseMirror th,
+.scroll-editor .ProseMirror td {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #e5e7eb;
+  text-align: left;
+}
+.scroll-editor .ProseMirror img {
+  max-width: 100%;
+  border-radius: 20px;
+}
+
+/* Smooth open/close for native <dialog> (see lib/dialog.ts for the exit side). */
+.dialog-pop[open] {
+  animation: dialog-in 260ms cubic-bezier(0.32, 0.72, 0, 1);
+}
+.dialog-pop[open]::backdrop {
+  animation: dialog-backdrop-in 260ms ease-out;
+}
+.dialog-pop[data-closing] {
+  animation: dialog-out 180ms cubic-bezier(0.4, 0, 1, 1) forwards;
+}
+.dialog-pop[data-closing]::backdrop {
+  animation: dialog-backdrop-out 180ms ease-in forwards;
+}
+.dialog-pop::backdrop {
+  backdrop-filter: blur(2px);
+}
+@keyframes dialog-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.96);
+  }
+}
+@keyframes dialog-out {
+  to {
+    opacity: 0;
+    transform: translateY(10px) scale(0.97);
+  }
+}
+@keyframes dialog-backdrop-in {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes dialog-backdrop-out {
+  to {
+    opacity: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .dialog-pop[open],
+  .dialog-pop[open]::backdrop {
+    animation: none;
+  }
+}
+
+/* React Flow (topic tree): match the app's surface colour and stay still for people who ask for less motion. */
+.react-flow {
+  --xy-background-color: #f0f2f5;
+  --xy-minimap-background-color: #f0f2f5;
+}
+@media (prefers-reduced-motion: reduce) {
+  .react-flow__edge.animated path {
+    animation: none;
+  }
+}
+
+/* Topic tree animations: staggered fade-in on load, unlock and level-up celebrations, slide-in side panel. */
+@keyframes tree-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+@keyframes tree-unlock {
+  from {
+    transform: scale(0);
+    filter: grayscale(1);
+  }
+  to {
+    transform: scale(1);
+    filter: grayscale(0);
+  }
+}
+@keyframes tree-levelup {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.07);
+    box-shadow: 0 0 0 4px var(--node-color), 0 0 30px 8px var(--node-color);
+  }
+}
+@keyframes panel-slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+}
+.tree-fade-in {
+  animation: tree-fade-in 400ms ease-out both;
+}
+.tree-unlock {
+  animation: tree-unlock 500ms cubic-bezier(0.34, 1.4, 0.64, 1) both;
+}
+.tree-levelup {
+  animation: tree-levelup 300ms ease-in-out 3;
+}
+.panel-slide-in {
+  animation: panel-slide-in 320ms cubic-bezier(0.32, 0.72, 0, 1) both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .tree-fade-in,
+  .tree-unlock,
+  .tree-levelup,
+  .panel-slide-in {
+    animation: none;
+  }
+}
+
+/* Interaction polish: page transition, list stagger (--i, capped at 8 steps), card lift, reaction pops, badge card, at-risk flame. */
+@keyframes page-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+@keyframes pop {
+  0% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(1.35);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes hop {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-5px);
+  }
+}
+@keyframes badge-pop {
+  0% {
+    transform: rotate(0) scale(0.4);
+    box-shadow: 0 0 0 0 #f59e0b00;
+  }
+  60% {
+    transform: rotate(360deg) scale(1.15);
+    box-shadow: 0 0 36px 12px #f59e0b99;
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+    box-shadow: 0 0 18px 4px #f59e0b55;
+  }
+}
+@keyframes flame-warn {
+  50% {
+    transform: scale(1.18);
+    opacity: 0.7;
+  }
+}
+.page-in {
+  animation: page-in 220ms ease-out backwards;
+}
+.stagger-in {
+  animation: page-in 320ms ease-out backwards;
+  animation-delay: calc(min(var(--i, 0), 8) * 60ms);
+}
+.card-lift:hover {
+  transform: translateY(-3px);
+}
+.anim-pop {
+  animation: pop 350ms ease-out;
+}
+.anim-hop {
+  animation: hop 400ms ease-out;
+}
+.badge-pop {
+  animation: badge-pop 600ms ease-out both;
+}
+.flame-warn {
+  animation: flame-warn 1.2s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .page-in,
+  .stagger-in,
+  .anim-pop,
+  .anim-hop,
+  .badge-pop,
+  .flame-warn {
+    animation: none;
+  }
+  .card-lift:hover {
+    transform: none;
+  }
+}
